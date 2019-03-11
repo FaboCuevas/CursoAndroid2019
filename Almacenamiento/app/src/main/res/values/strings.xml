@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Almacenamiento</string>
+    <string name="genero_hombre">Hombre</string>
+    <string name="genero_mujer">Mujer</string>
+</resources>
