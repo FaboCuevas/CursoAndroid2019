@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 case RESULT_OK:
                     Bitmap imageBitmap = BitmapFactory.decodeFile(currentPhotoPath);
                     imagenCamera.setImageBitmap(imageBitmap);
+
                     break;
                 case RESULT_CANCELED:
                     Toast.makeText(this, "Fotografía cancelada", Toast.LENGTH_SHORT).show();
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void requestCameraPermission(){
         //Solicitar permiso sobre cámara   *Actividad       *Lista de permisos                  *Codigo de petición
-        ActivityCompat.requestPermissions(this, new String[]{ Manifest.permission.CAMERA },1);
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.CAMERA, }, 1);
     }
 
     public void requestCamera(){

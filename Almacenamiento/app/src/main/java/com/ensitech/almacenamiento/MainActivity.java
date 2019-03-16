@@ -1,5 +1,6 @@
 package com.ensitech.almacenamiento;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,19 +80,28 @@ public class MainActivity extends AppCompatActivity {
                 persona.setCorreo(correo);
                 persona.setGenero(genero);
 
-                personaBDHelper.insertarPersona(persona);
+                //personaBDHelper.insertarPersona(persona);
+                /*
+                SharedPreferenceHelper.editor.putString("NOMBRE_PERSONA", persona.getNombre());
+                SharedPreferenceHelper.editor.putString("APELLIDO_PERSONA", persona.getApellido());
+                SharedPreferenceHelper.editor.putString("CORREO_PERSONA", persona.getCorreo());
+                SharedPreferenceHelper.editor.commit();
+                */
+                PersonaInstance.getInstance().setPersona(persona);
             }
         });
         btnMostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lblMostrar.setText("");
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(intent);
+                /*lblMostrar.setText("");
                 List<Persona> personas = personaBDHelper.obtenerPersonas();
                 for (Persona persona: personas) {
                     String textoActual = lblMostrar.getText().toString();
                     textoActual = textoActual + "\n" + persona.getNombre();
                     lblMostrar.setText(textoActual);
-                }
+                }*/
             }
         });
     }

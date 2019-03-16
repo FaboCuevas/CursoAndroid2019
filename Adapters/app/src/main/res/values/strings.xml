@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Adapters</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="lista_paises">
+        <item>Estados Unidos</item>
+        <item>México</item>
+        <item>Korea</item>
+        <item>Suiza</item>
+        <item>Colombia</item>
+        <item>Dinamarca</item>
+        <item>Francia</item>
+    </string-array>
+</resources>
