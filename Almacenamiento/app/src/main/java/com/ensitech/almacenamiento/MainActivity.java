@@ -5,10 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnGuardar;
     Button btnMostrar;
-    TextView lblMostrar;
+    Spinner spnLista;
     EditText txtNombre;
     EditText txtApellido;
     EditText txtEdad;
@@ -35,13 +37,20 @@ public class MainActivity extends AppCompatActivity {
         persona = new Persona();
         personaBDHelper = new PersonaBDHelper(this);
         btnMostrar = findViewById(R.id.boton_mostrar);
-        lblMostrar = findViewById(R.id.lista_personas);
+        spnLista = findViewById(R.id.lista_personas);
         btnGuardar = findViewById(R.id.boton_guardar);
         txtNombre = findViewById(R.id.nombre);
         txtApellido = findViewById(R.id.apellido);
         txtEdad = findViewById(R.id.edad);
         txtCorreo = findViewById(R.id.correo);
         rdgGenero = findViewById(R.id.genero);
+
+        //Inicializar el spinner
+        Persona[] personas = { new Persona() };
+        ArrayAdapter<Persona> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, personas);
+        spnLista.setAdapter(adapter);
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
                 persona.setCorreo(correo);
                 persona.setGenero(genero);
 
-                //personaBDHelper.insertarPersona(persona);
+                personaBDHelper.insertarPersona(persona);
                 /*
                 SharedPreferenceHelper.editor.putString("NOMBRE_PERSONA", persona.getNombre());
                 SharedPreferenceHelper.editor.putString("APELLIDO_PERSONA", persona.getApellido());
                 SharedPreferenceHelper.editor.putString("CORREO_PERSONA", persona.getCorreo());
                 SharedPreferenceHelper.editor.commit();
                 */
-                PersonaInstance.getInstance().setPersona(persona);
+                //PersonaInstance.getInstance().setPersona(persona);
             }
         });
         btnMostrar.setOnClickListener(new View.OnClickListener() {
@@ -95,13 +104,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 startActivity(intent);
-                /*lblMostrar.setText("");
-                List<Persona> personas = personaBDHelper.obtenerPersonas();
-                for (Persona persona: personas) {
-                    String textoActual = lblMostrar.getText().toString();
-                    textoActual = textoActual + "\n" + persona.getNombre();
-                    lblMostrar.setText(textoActual);
-                }*/
+                /*List<Persona> personas = personaBDHelper.obtenerPersonas();
+                ArrayAdapter<Persona> arrayAdapter = new ArrayAdapter<>(MainActivity.this,
+                        android.R.layout.simple_list_item_1, personas);
+                spnLista.setAdapter(arrayAdapter);*/
             }
         });
     }

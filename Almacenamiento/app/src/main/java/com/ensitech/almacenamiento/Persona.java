@@ -15,6 +15,11 @@ public class Persona {
         correo = "";
     }
 
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
+
     public Persona(String nombre, String apellido, int edad, String genero, String correo) {
             this.nombre = nombre;
         this.apellido = apellido;

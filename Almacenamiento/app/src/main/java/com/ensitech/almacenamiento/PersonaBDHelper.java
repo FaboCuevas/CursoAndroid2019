@@ -65,6 +65,22 @@ public class PersonaBDHelper extends SQLiteOpenHelper {
                         cursor.getString(
                                 cursor.getColumnIndex(
                                         PersonaContract.PersonaEntry.NOMBRE)));
+                persona.setApellido(
+                        cursor.getString(
+                                cursor.getColumnIndex(
+                                        PersonaContract.PersonaEntry.APELLIDO)));
+                persona.setCorreo(
+                        cursor.getString(
+                                cursor.getColumnIndex(
+                                        PersonaContract.PersonaEntry.CORREO)));
+                persona.setGenero(
+                        cursor.getString(
+                                cursor.getColumnIndex(
+                                        PersonaContract.PersonaEntry.GENERO)));
+                persona.setEdad(
+                        cursor.getInt(
+                                cursor.getColumnIndex(
+                                        PersonaContract.PersonaEntry.EDAD)));
                 personas.add(persona);
             }
         }
